@@ -31,7 +31,7 @@ In this workshop we will look at a few of them:
 >Connect to your Pod first! Make sure your Anyconnect VPN connection to the Pod assigned to you is active. 
 >
 > If you haven't connected yet, check out the instructions to do so here: 
-><https://iosxr-devnet-ciscolive.github.io/cleur2019-workshop/assets/CLEUR19-IOS-XR-Programmability-Workshop.pdf>
+><https://iosxr-devnet-ciscolive.github.io/clus2019-workshop/assets/CLUS-19-Akshat-IOS-XR-Programmability.pdf>
 >
 >
 > Once you're connected, use the following instructions to connect to the individual nodes.
@@ -620,7 +620,3 @@ To wrap up, this is what we achieved as part of this workshop:
 *  Used Ansible to setup and launch the Open/R docker containers on each router
 *  Utilized the Service-Layer API intergration of Open/R to program routes into the IOS-XR RIB and act as an IGP
 *  With the help of the routes learned by Open/R, the BGP session was able to come up and get established and the same was reflected in the telemetry data received by the telemetry client.
-
-
-
-
