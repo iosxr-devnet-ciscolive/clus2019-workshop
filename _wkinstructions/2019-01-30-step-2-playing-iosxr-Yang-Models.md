@@ -90,10 +90,10 @@ admin@10.10.20.170's password:
 Last login: Tue Jan 29 18:35:38 2019 from 192.168.122.1
 admin@devbox:~$ 
 admin@devbox:~$ 
-admin@devbox:~$ cd iosxr-devnet-cleur2019/
-admin@devbox:iosxr-devnet-cleur2019$ ls
+admin@devbox:~$ cd iosxr-devnet-clus2019/
+admin@devbox:iosxr-devnet-clus2019$ ls
 ansible  README.md  ztp_hooks
-admin@devbox:iosxr-devnet-cleur2019$ cd ansible/
+admin@devbox:iosxr-devnet-clus2019$ cd ansible/
 admin@devbox:ansible$ ls
 ansible_hosts  configure_bgp_oc_netconf.yml  docker_bringup.yml  execute_python_ztp.yml  openr  set_ipv6_route.sh  xml
 admin@devbox:ansible$ 
@@ -379,8 +379,8 @@ Jump into the `ydk` directory in the clone github repository:
 
 
 ```
-admin@devbox:~$ cd ~/iosxr-devnet-cleur2019/
-admin@devbox:iosxr-devnet-cleur2019$ cd ydk/
+admin@devbox:~$ cd ~/iosxr-devnet-clus2019/
+admin@devbox:iosxr-devnet-clus2019$ cd ydk/
 admin@devbox:ydk$ 
 ```
 
