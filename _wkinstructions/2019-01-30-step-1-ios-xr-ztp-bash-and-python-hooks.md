@@ -372,7 +372,7 @@ Further the script will restart the docker daemon on the host for the routing ch
 
 
 **IMPORTANT:** Before you run the ansible playbook, make sure you set the `ANSIBLE_HOST_KEY_CHECKING` 
-environment variable to false to allow Ansible to easily connect without being stalled by key
+environment variable to `false` to allow Ansible to easily connect without being stalled by key
 checking requirements for the two routers. This can also be set in the ansible_cfg file instead.  
 {: .notice--danger}  
 
