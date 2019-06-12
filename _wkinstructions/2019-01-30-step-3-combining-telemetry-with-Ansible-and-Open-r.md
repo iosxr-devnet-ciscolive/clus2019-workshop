@@ -525,9 +525,9 @@ root@r1:/# breeze kvstore adj
 
 > r1's adjacencies, version: 30, Node Label: 1, Overloaded?: False
 Neighbor    Local Interface    Remote Interface      Metric    Weight    Adj Label  NextHop-v4    NextHop-v6               Uptime
-r2          Gi0_0_0_0          Gi0_0_0_0                  7         1        50009  10.1.1.20     fe80::5054:ff:fe93:8ab0  15m53s
-r2          Gi0_0_0_1          Gi0_0_0_1                  7         1        50010  11.1.1.20     fe80::5054:ff:fe93:8ab1  15m53s
-r2          Gi0_0_0_2          Gi0_0_0_2                  6         1        50011  12.1.1.20     fe80::5054:ff:fe93:8ab2  15m53s
+r2          Gi0_0_0_0          Gi0_0_0_0                  7         1        50009  10.1.1.20     fe80::5054:ff:fe93:8ab0  1m53s
+r2          Gi0_0_0_1          Gi0_0_0_1                  7         1        50010  11.1.1.20     fe80::5054:ff:fe93:8ab1  1m53s
+r2          Gi0_0_0_2          Gi0_0_0_2                  6         1        50011  12.1.1.20     fe80::5054:ff:fe93:8ab2  1m53s
 
 
 root@r1:/# 
