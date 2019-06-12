@@ -1,6 +1,6 @@
 ---
 published: true
-date: '2018-06-12 09:51 -0400'
+date: '2019-06-12 07:51 -0400'
 title: 'Step 2: Playing with IOS-XR YANG Models'
 author: Akshat Sharma
 tags:
