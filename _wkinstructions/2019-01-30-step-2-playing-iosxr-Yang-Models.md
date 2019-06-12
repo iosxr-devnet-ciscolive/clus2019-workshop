@@ -778,7 +778,7 @@ Hop into the `build/python/` directory and generate the required bindings from t
 
 ```
 admin@devbox:~$ 
-admin@devbox:~$ cd telemetry-grpc-collectors/build/python/
+admin@devbox:~$ cd ~/telemetry-grpc-collectors/build/python/
 admin@devbox:python$ 
 admin@devbox:python$ 
 admin@devbox:python$ ./gen-mdt-dialin-bindings.sh 
