@@ -153,16 +153,16 @@ We will use Ansible to deploy Open/R as docker instances to the routers r1 and r
 
 To view the relevant config files, **open a new shell** on the devbox with the telemetry client running in the earlier shell. 
 
-Drop into the `ansible/openr` folder in the original `iosxr-devnet-cleur2019` git repository you cloned earlier: 
+Drop into the `ansible/openr` folder in the original `iosxr-devnet-clus2019` git repository you cloned earlier: 
 
 
 ```
-admin@devbox:~$ cd iosxr-devnet-cleur2019/
-admin@devbox:iosxr-devnet-cleur2019$ ls
+admin@devbox:~$ cd iosxr-devnet-clus2019/
+admin@devbox:iosxr-devnet-clus2019$ ls
 ansible  README.md  ydk  ztp_hooks
-admin@devbox:iosxr-devnet-cleur2019$ 
-admin@devbox:iosxr-devnet-cleur2019$ 
-admin@devbox:iosxr-devnet-cleur2019$ cd ansible/openr/
+admin@devbox:iosxr-devnet-clus2019$ 
+admin@devbox:iosxr-devnet-clus2019$ 
+admin@devbox:iosxr-devnet-clus2019$ cd ansible/openr/
 admin@devbox:openr$ 
 admin@devbox:openr$ ls
 hosts_r1  increment_ipv4_prefix1.py  launch_openr_r1.sh  run_openr_r1.sh
