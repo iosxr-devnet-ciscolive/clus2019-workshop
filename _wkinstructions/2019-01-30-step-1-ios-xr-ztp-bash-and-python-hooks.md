@@ -33,7 +33,7 @@ Complete CLI support:
 >Connect to your Pod first! Make sure your Anyconnect VPN connection to the Pod assigned to you is active. 
 >
 > If you haven't connected yet, check out the instructions to do so here: 
-><https://iosxr-devnet-ciscolive.github.io/cleur2019-workshop/assets/CLEUR19-IOS-XR-Programmability-Workshop.pdf>
+><https://iosxr-devnet-ciscolive.github.io/clus2019-workshop/assets/CLUS-19-Akshat-IOS-XR-Programmability.pdf>
 >
 >
 > Once you're connected, use the following instructions to connect to the individual nodes.
