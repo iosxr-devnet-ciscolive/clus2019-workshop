@@ -193,15 +193,76 @@ The Ansible playbook we intend to use can be found in the `ansible` directory  o
 
 
 ```
-admin@devbox:~$ 
-admin@devbox:~$ cd ~/iosxr-devnet-clus2019/
-admin@devbox:iosxr-devnet-clus2019$ cd ansible/
+admin@devbox:~$ cd iosxr-devnet-clus2019/ansible/
+admin@devbox:ansible$ ls
+ansible_hosts          configure_bgp_netconf.yml  openr              setup_dependencies.yml       yang_config
+ansible_netconf.yml    docker_bringup.yml         openr_setup.yml    setup_insecure_registry.yml
+combined_playbook.yml  execute_python_ztp.yml     set_ipv6_route.sh  xml
 admin@devbox:ansible$ 
+admin@devbox:ansible$ 
+admin@devbox:ansible$ cat openr_setup.yml 
+---
+- import_playbook: setup_insecure_registry.yml 
+- import_playbook: docker_bringup.yml 
+admin@devbox:ansible$ 
+```
+This is also a combined playbook that combines the following playbooks:
+
+1. Playbook to setup a local docker registry on the devbox:
+   We set up a private insecure registry on the devbox and pull the open/R docker image from dockerhub, ready to be downloaded by the routers:
+
+
+```
+admin@devbox:ansible$ 
+admin@devbox:ansible$ cat setup_insecure_registry.yml 
+---
+- hosts: devbox-host 
+  gather_facts: no
+  become: yes
+
+  tasks:
+
+  - name: Install the docker module for Ansible 
+    pip:
+      name:  docker
+      state: present
+
+  - name: Create mount volume for registry
+    file:
+      path: /tmp/registry
+      state: directory
+
+  - name: Deploy the local registry server
+    docker_container:
+        name: registry
+        image: registry:2
+        volumes:  /tmp/registry:/var/lib/registry
+        ports:
+        - "5000:5000"
+        restart_policy: always
+        state: started
+        force_kill: yes
+        interactive: yes
+        restart: yes
+
+  - name: Tag and push openr image to local registry
+    docker_image:
+      name: akshshar/openr-xr 
+      repository: localhost:5000/openr-xr
+      tag: latest
+      push: yes
+admin@devbox:ansible$ 
+```
+
+2. Docker bringup playbook that runs against each router to fetch the docker image from the registry we set up with the first playbook above, fetches the required config files, cleans up any running containers and then launches the open/R containers on each router:
+
+
+```
 admin@devbox:ansible$ cat docker_bringup.yml 
 ---
 - hosts: routers_shell
   gather_facts: no
-  sudo: yes
+  become: yes
 
   vars:
     connect_vars:
@@ -213,6 +274,27 @@ admin@devbox:ansible$ cat docker_bringup.yml
 
   tasks:
 
+
+  - name: Copy modified docker sysconfig file to rtr
+    copy:
+      src: "{{ docker_sysconfig_file }}"
+      dest: "/misc/app_host/etc/sysconfig/docker"
+      owner: root
+      group: root
+      mode: a+x
+
+  - name: Copy over modified mounted docker sysconfig file to host docker sysconfig
+    shell: source /pkg/bin/ztp_helper.sh && echo -ne "run ssh 10.0.2.16 cp /misc/app_host/etc/sysconfig/docker /etc/sysconfig/docker\n" | xrcmd "admin"
+
+  - name: Restart the docker daemon
+    shell: source /pkg/bin/ztp_helper.sh && echo -ne "run ssh 10.0.2.16 service docker restart\n" | xrcmd "admin"
+
+  # Pause for 5 minutes to build app cache.
+  - name: Pause the playbook for about 30 seconds as docker daemon restarts due to sysconfig change
+    pause:
+      seconds: 30
+
+
   - name: Copy run_openr script to rtr
     copy:
       src: "{{ run_openr_script }}"
@@ -220,6 +302,7 @@ admin@devbox:ansible$ cat docker_bringup.yml
       owner: root 
       group: root 
       mode: a+x 
+
   - name: Copy hosts_r file to rtr
     copy:
       src: "{{ hosts_r }}"
@@ -290,6 +373,7 @@ admin@devbox:ansible$ cat docker_bringup.yml
   - debug: var=output.stdout_lines  
 admin@devbox:ansible$ 
 ```
+
 
 As can be seen above, the first 4 tasks of the playbook copy over the relevant config files and scripts for Open/R into `/misc/app_host` directory on the routers. This particular directory is mounted into the docker containers when we launch the container to make the config files available to Open/R inside the docker container. 
 
