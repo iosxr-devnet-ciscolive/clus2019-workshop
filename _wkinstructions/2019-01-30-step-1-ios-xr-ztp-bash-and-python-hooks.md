@@ -93,8 +93,8 @@ Last login: Tue Jan 29 18:33:43 2019 from 192.168.122.1
 admin@devbox:~$ 
 admin@devbox:~$ 
 admin@devbox:~$ 
-admin@devbox:~$ git clone https://github.com/akshshar/iosxr-devnet-cleur2019.git
-Cloning into 'iosxr-devnet-cleur2019'...
+admin@devbox:~$ git clone https://github.com/akshshar/iosxr-devnet-clus2019.git
+Cloning into 'iosxr-devnet-clus2019'...
 remote: Enumerating objects: 33, done.
 remote: Counting objects: 100% (33/33), done.
 remote: Compressing objects: 100% (23/23), done.
@@ -109,9 +109,9 @@ admin@devbox:~$
 You should see the following files:
 
 ```
-admin@devbox:~$ cd iosxr-devnet-cleur2019/
-admin@devbox:iosxr-devnet-cleur2019$ 
-admin@devbox:iosxr-devnet-cleur2019$ tree .
+admin@devbox:~$ cd iosxr-devnet-clus2019/
+admin@devbox:iosxr-devnet-clus2019$ 
+admin@devbox:iosxr-devnet-clus2019$ tree .
 .
 ├── ansible
 │   ├── ansible_hosts
@@ -138,15 +138,15 @@ admin@devbox:iosxr-devnet-cleur2019$ tree .
     └── automate_cli_python.py
 
 4 directories, 19 files
-admin@devbox:iosxr-devnet-cleur2019$ 
+admin@devbox:iosxr-devnet-clus2019$ 
 ```
 
 
 cd into the ztp_hooks directory and you should a couple of files we will deal with in this section
 
 ```
-admin@devbox:iosxr-devnet-cleur2019$ 
-admin@devbox:iosxr-devnet-cleur2019$ cd ztp_hooks/
+admin@devbox:iosxr-devnet-clus2019$ 
+admin@devbox:iosxr-devnet-clus2019$ cd ztp_hooks/
 admin@devbox:ztp_hooks$ ls
 automate_cli_bash.sh  automate_cli_python.py
 admin@devbox:ztp_hooks$ 
@@ -172,7 +172,7 @@ password for `Router r1` is `admin`
 ```
 admin@devbox:ztp_hooks$ 
 admin@devbox:ztp_hooks$ pwd
-/home/admin/iosxr-devnet-cleur2019/ztp_hooks
+/home/admin/iosxr-devnet-clus2019/ztp_hooks
 admin@devbox:ztp_hooks$ 
 admin@devbox:ztp_hooks$ scp -P 2221 automate_cli_bash.sh  admin@10.10.20.170:/misc/scratch/
 
@@ -243,7 +243,7 @@ Let's do the same for router r2.
 
 ```
 admin@devbox:ztp_hooks$ pwd
-/home/admin/iosxr-devnet-cleur2019/ztp_hooks
+/home/admin/iosxr-devnet-clus2019/ztp_hooks
 admin@devbox:ztp_hooks$ 
 admin@devbox:ztp_hooks$ 
 admin@devbox:ztp_hooks$ scp -P 2231 automate_cli_bash.sh  admin@10.10.20.170:/misc/scratch/
@@ -393,8 +393,8 @@ The python ZTP hooks script we intend to use is under `ztp_hooks/` directory in 
 
 ```
 admin@devbox:~$ 
-admin@devbox:~$ cd ~/iosxr-devnet-cleur2019/
-admin@devbox:iosxr-devnet-cleur2019$ cd ztp_hooks/
+admin@devbox:~$ cd ~/iosxr-devnet-clus2019/
+admin@devbox:iosxr-devnet-clus2019$ cd ztp_hooks/
 admin@devbox:ztp_hooks$ ls
 automate_cli_bash.sh  automate_cli_python.py
 admin@devbox:ztp_hooks$
@@ -436,10 +436,10 @@ Hop into the `ansible/` directory of the git repository we cloned earlier. The a
 ### Dump the contents of the Ansible playbook
 
 ```
-admin@devbox:~$ cd iosxr-devnet-cleur2019/
-admin@devbox:iosxr-devnet-cleur2019$ ls
+admin@devbox:~$ cd iosxr-devnet-clus2019/
+admin@devbox:iosxr-devnet-clus2019$ ls
 ansible  README.md  ztp_hooks
-admin@devbox:iosxr-devnet-cleur2019$ cd ansible/
+admin@devbox:iosxr-devnet-clus2019$ cd ansible/
 admin@devbox:ansible$ 
 admin@devbox:ansible$ cat execute_python_ztp.yml 
 ---
