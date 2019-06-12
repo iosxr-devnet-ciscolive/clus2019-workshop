@@ -749,7 +749,7 @@ To start, first clone the telemetry-grpc-collectors repo into the devbox home di
 
 ```
 admin@devbox:~$ 
-admin@devbox:~$ git clone --recursive https://github.com/ios-xr/telemetry-grpc-collectors
+admin@devbox:~$ git clone --recursive https://github.com/ios-xr/telemetry-grpc-collectors ~/telemetry-grpc-collectors
 Cloning into 'telemetry-grpc-collectors'...
 remote: Enumerating objects: 16, done.
 remote: Counting objects: 100% (16/16), done.
