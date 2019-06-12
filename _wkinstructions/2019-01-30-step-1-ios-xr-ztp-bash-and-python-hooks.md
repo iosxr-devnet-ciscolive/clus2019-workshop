@@ -109,17 +109,18 @@ admin@devbox:~$
 You should see the following files:
 
 ```
-admin@devbox:~$ cd iosxr-devnet-clus2019/
-admin@devbox:iosxr-devnet-clus2019$ 
 admin@devbox:iosxr-devnet-clus2019$ tree .
 .
 ├── ansible
 │   ├── ansible_hosts
-│   ├── configure_bgp_oc_netconf.yml
-│   ├── docker_bringup.retry
+│   ├── ansible_netconf.yml
+│   ├── combined_playbook.yml
+│   ├── configure_bgp_netconf.yml
 │   ├── docker_bringup.yml
 │   ├── execute_python_ztp.yml
 │   ├── openr
+│   │   ├── docker_base.sysconfig
+│   │   ├── docker.sysconfig
 │   │   ├── hosts_r1
 │   │   ├── hosts_r2
 │   │   ├── increment_ipv4_prefix1.py
@@ -128,16 +129,24 @@ admin@devbox:iosxr-devnet-clus2019$ tree .
 │   │   ├── launch_openr_r2.sh
 │   │   ├── run_openr_r1.sh
 │   │   └── run_openr_r2.sh
+│   ├── openr_setup.yml
 │   ├── set_ipv6_route.sh
-│   └── xml
-│       ├── r1-bgp.xml
-│       └── r2-bgp.xml
+│   ├── setup_dependencies.yml
+│   ├── setup_insecure_registry.yml
+│   ├── xml
+│   │   ├── r1-bgp.xml
+│   │   └── r2-bgp.xml
+│   └── yang_config
+│       ├── r1.xml
+│       └── r2.xml
 ├── README.md
+├── ydk
+│   └── configure_telemetry_openconfig.py
 └── ztp_hooks
     ├── automate_cli_bash.sh
     └── automate_cli_python.py
 
-4 directories, 19 files
+6 directories, 28 files
 admin@devbox:iosxr-devnet-clus2019$ 
 ```
 
@@ -317,74 +326,6 @@ So for the python ZTP scripts we will deal with below, we scale out the process 
 {: .notice--success}
 
 
-## Install Ansible on the DevBox
-
-Let's begin by installing Ansible on the Devbox. We will go with Ansible version=2.6.0 since it has been tested with this lab.
-
-```
-admin@devbox:~$ sudo pip install ansible==2.6.0
-The directory '/home/admin/.cache/pip/http' or its parent directory is not owned by the current user and the cache has been disabled. Please check the permissions and owner of that directory. If executing pip with sudo, you may want sudo's -H flag.
-The directory '/home/admin/.cache/pip' or its parent directory is not owned by the current user and caching wheels has been disabled. check the permissions and owner of that directory. If executing pip with sudo, you may want sudo's -H flag.
-Collecting ansible==2.6.0
-  Downloading https://files.pythonhosted.org/packages/c3/af/c86d456905284ecfce79736b55942470b42fdadea9150843e2eb51c2ecae/ansible-2.6.0.tar.gz (10.7MB)
-    100% |████████████████████████████████| 10.7MB 1.3MB/s 
-Collecting jinja2 (from ansible==2.6.0)
-  Downloading https://files.pythonhosted.org/packages/7f/ff/ae64bacdfc95f27a016a7bed8e8686763ba4d277a78ca76f32659220a731/Jinja2-2.10-py2.py3-none-any.whl (126kB)
-    100% |████████████████████████████████| 133kB 20.9MB/s 
-Collecting PyYAML (from ansible==2.6.0)
-  Downloading https://files.pythonhosted.org/packages/9e/a3/1d13970c3f36777c583f136c136f804d70f500168edc1edea6daa7200769/PyYAML-3.13.tar.gz (270kB)
-    100% |████████████████████████████████| 276kB 21.7MB/s 
-Collecting paramiko (from ansible==2.6.0)
-  Downloading https://files.pythonhosted.org/packages/cf/ae/94e70d49044ccc234bfdba20114fa947d7ba6eb68a2e452d89b920e62227/paramiko-2.4.2-py2.py3-none-any.whl (193kB)
-    100% |████████████████████████████████| 194kB 24.0MB/s 
-Collecting cryptography (from ansible==2.6.0)
-  Downloading https://files.pythonhosted.org/packages/98/71/e632e222f34632e0527dd41799f7847305e701f38f512d81bdf96009bca4/cryptography-2.5-cp34-abi3-manylinux1_x86_64.whl (2.4MB)
-    100% |████████████████████████████████| 2.4MB 13.8MB/s 
-Requirement already satisfied: setuptools in /usr/lib/python3/dist-packages (from ansible==2.6.0) (20.7.0)
-Collecting MarkupSafe>=0.23 (from jinja2->ansible==2.6.0)
-  Downloading https://files.pythonhosted.org/packages/3e/a5/e188980ef1d0a4e0788b5143ea933f9afd760df38fec4c0b72b5ae3060c8/MarkupSafe-1.1.0-cp35-cp35m-manylinux1_x86_64.whl
-Collecting bcrypt>=3.1.3 (from paramiko->ansible==2.6.0)
-  Downloading https://files.pythonhosted.org/packages/d0/79/79a4d167a31cc206117d9b396926615fa9c1fdbd52017bcced80937ac501/bcrypt-3.1.6-cp34-abi3-manylinux1_x86_64.whl (55kB)
-    100% |████████████████████████████████| 61kB 12.8MB/s 
-Collecting pynacl>=1.0.1 (from paramiko->ansible==2.6.0)
-  Downloading https://files.pythonhosted.org/packages/27/15/2cd0a203f318c2240b42cd9dd13c931ddd61067809fee3479f44f086103e/PyNaCl-1.3.0-cp34-abi3-manylinux1_x86_64.whl (759kB)
-    100% |████████████████████████████████| 768kB 15.8MB/s 
-Collecting pyasn1>=0.1.7 (from paramiko->ansible==2.6.0)
-  Downloading https://files.pythonhosted.org/packages/7b/7c/c9386b82a25115cccf1903441bba3cbadcfae7b678a20167347fa8ded34c/pyasn1-0.4.5-py2.py3-none-any.whl (73kB)
-    100% |████████████████████████████████| 81kB 9.8MB/s 
-Collecting asn1crypto>=0.21.0 (from cryptography->ansible==2.6.0)
-  Downloading https://files.pythonhosted.org/packages/ea/cd/35485615f45f30a510576f1a56d1e0a7ad7bd8ab5ed7cdc600ef7cd06222/asn1crypto-0.24.0-py2.py3-none-any.whl (101kB)
-    100% |████████████████████████████████| 102kB 17.1MB/s 
-Requirement already satisfied: six>=1.4.1 in /usr/lib/python3/dist-packages (from cryptography->ansible==2.6.0) (1.10.0)
-Collecting cffi!=1.11.3,>=1.8 (from cryptography->ansible==2.6.0)
-  Downloading https://files.pythonhosted.org/packages/59/cc/0e1635b4951021ef35f5c92b32c865ae605fac2a19d724fb6ff99d745c81/cffi-1.11.5-cp35-cp35m-manylinux1_x86_64.whl (420kB)
-    100% |████████████████████████████████| 430kB 18.0MB/s 
-Collecting pycparser (from cffi!=1.11.3,>=1.8->cryptography->ansible==2.6.0)
-  Downloading https://files.pythonhosted.org/packages/68/9e/49196946aee219aead1290e00d1e7fdeab8567783e83e1b9ab5585e6206a/pycparser-2.19.tar.gz (158kB)
-    100% |████████████████████████████████| 163kB 12.5MB/s 
-Installing collected packages: MarkupSafe, jinja2, PyYAML, asn1crypto, pycparser, cffi, cryptography, bcrypt, pynacl, pyasn1, paramiko, ansible
-  Running setup.py install for PyYAML ... done
-  Running setup.py install for pycparser ... done
-  Running setup.py install for ansible ... done
-Successfully installed MarkupSafe-1.1.0 PyYAML-3.13 ansible-2.6.0 asn1crypto-0.24.0 bcrypt-3.1.6 cffi-1.11.5 cryptography-2.5 jinja2-2.10 paramiko-2.4.2 pyasn1-0.4.5 pycparser-2.19 pynacl-1.3.0
-You are using pip version 10.0.1, however version 19.0.1 is available.
-You should consider upgrading via the 'pip install --upgrade pip' command.
-admin@devbox:~$ 
-```
-
-Check the ansible version once installation is complete:
-
-```
-admin@devbox:~$ ansible --version
-ansible 2.6.0
-  config file = /etc/ansible/ansible.cfg
-  configured module search path = ['/home/admin/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
-  ansible python module location = /usr/local/lib/python3.5/dist-packages/ansible
-  executable location = /usr/local/bin/ansible
-  python version = 3.5.2 (default, Nov 12 2018, 13:43:14) [GCC 5.4.0 20160609]
-admin@devbox:~$ 
-
-```
 
 
 ## Python ZTP hooks
