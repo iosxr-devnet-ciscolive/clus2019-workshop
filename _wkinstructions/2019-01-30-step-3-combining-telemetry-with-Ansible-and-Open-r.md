@@ -392,7 +392,8 @@ checking requirements for the two routers. This can also be set in the ansible_c
 admin@devbox:ansible$ 
 admin@devbox:ansible$ export ANSIBLE_HOST_KEY_CHECKING=False
 ```  
-{: .notice--danger} . 
+{: .notice--danger}
+
 
 
 Run the playbook as shown below: 
