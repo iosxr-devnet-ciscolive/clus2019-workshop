@@ -184,8 +184,6 @@ admin@devbox:openr$
 
 
 
-
-
 ### Ansible Playbook to deploy Open/R
 
 
