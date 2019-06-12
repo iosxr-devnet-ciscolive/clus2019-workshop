@@ -492,11 +492,11 @@ Wed Jan 30 12:41:59.867 UTC
 Issue a `docker ps` command to check that the container is running: 
 
 ```
-[r1:~]$ docker ps
-CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS               NAMES
-ada4bf59c0b5        akshshar/openr-xr   "/root/run_openr_r1.s"   17 minutes ago      Up 17 minutes                           openr
 [r1:~]$ 
-
+[r1:~]$ docker ps
+CONTAINER ID        IMAGE                          COMMAND                  CREATED             STATUS              PORTS               NAMES
+a06e2dbefbff        192.168.122.11:5000/openr-xr   "/bin/bash -c '/root/"   2 minutes ago       Up 2 minutes                            openr
+[r1:~]$
 ```
 
 
