@@ -7,7 +7,8 @@ tags:
   - iosxr
   - cisco
   - devnet
-  - cleur2019
+  - clus2019
+  - programmability
 excerpt: >-
   Learn to use Ansible , YDK and Telemetry to solve several provisioning and
   monitoring tasks. We run some clients from written from scratch to help the
