@@ -385,7 +385,7 @@ The next 3 tasks are used to check if Open/R is already running, clean up if it 
 
 ### Run the Ansible Playbook
 
-**IMPORTANT:** Before you run the ansible playbook, make sure you set the ANSIBLE_HOST_KEY_CHECKING 
+**IMPORTANT:** Before you run the ansible playbook, make sure you set the `ANSIBLE_HOST_KEY_CHECKING` 
 environment variable to false to allow Ansible to easily connect without being stalled by key
 checking requirements for the two routers. This can also be set in the ansible_cfg file instead.
 ```
