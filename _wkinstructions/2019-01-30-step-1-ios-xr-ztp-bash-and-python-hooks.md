@@ -7,8 +7,8 @@ tags:
   - iosxr
   - cisco
   - devnet
-  - CLUS2018
   - programmability
+  - clus2019
 excerpt: Using ZTP hooks in bash and python to automate IOS-XR cli
 ---
 
