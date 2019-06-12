@@ -99,20 +99,55 @@ admin@devbox:ansible$
 
 ```
 
-We will be using the playbook: `configure_bgp_oc_netconf.yml` which uses the netconf_config module which in turn utilizes the XML encoded data to configure BGP on routers r1 and r2:
+We will be using the playbook: `ansible_netconf.yml` which uses the `netconf_config` module which in turn utilizes the XML encoded data to configure BGP on routers r1 and r2:
 
 The playbook is dumped below: 
 
 ```
 admin@devbox:ansible$ 
-admin@devbox:ansible$ cat configure_bgp_oc_netconf.yml 
+admin@devbox:ansible$ cat ansible_netconf.yml 
+---
+- import_playbook: setup_dependencies.yml
+- import_playbook: configure_bgp_netconf.yml
+admin@devbox:ansible$ 
+```  
+
+It can be seen that it is a combined playbook which in turn executes two other playbooks, expanded below:
+
+```
+admin@devbox:ansible$ 
+admin@devbox:ansible$ 
+admin@devbox:ansible$ cat setup_dependencies.yml 
+---
+- hosts: devbox-host
+  gather_facts: no
+  become: yes
+
+  tasks:
+
+  - name: Install ncclient 
+    pip:
+      name:  ncclient
+      state: present
+admin@devbox:ansible$ 
+admin@devbox:ansible$ 
+```  
+
+
+The `setup_dependencies.yml` playbook installs `ncclient` on the devbox host machine using `pip`. This is the dependency required to execute the `netconf_config` module on the devbox. We let ansible handle the dependencies in an automated fashion.
+
+
+```
+admin@devbox:ansible$ 
+admin@devbox:ansible$ cat configure_bgp_netconf.yml 
 ---
 - hosts: routers_shell
   connection: local
   gather_facts: no
 
   tasks:
-  - name: set ntp server in the device
+
+  - name: Configure BGP on the router
     netconf_config:
       host: "{{ ansible_host }}"
       port: "{{ netconf_port }}"
@@ -123,6 +158,9 @@ admin@devbox:ansible$ cat configure_bgp_oc_netconf.yml
 admin@devbox:ansible$ 
 admin@devbox:ansible$ 
 ```  
+
+The second playbook is `configure_bgp_netconf.yml` which utilizes the `netconf_config` module and accepts tparameters (netconf_ip, netconf_port, username, password and the xml file) to leverage netconf to apply xml encoded YANG modeled configuration on the router.
+
 
 The xml file used by the above playbook to configure BGP on router r1 is shown below. 
 This XML data utilizes the IOS-XR BGP Config YANG model:  `Cisco-IOS-XR-ipv4-bgp-cfg`.
