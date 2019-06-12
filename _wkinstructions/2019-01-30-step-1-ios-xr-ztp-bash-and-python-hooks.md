@@ -371,6 +371,16 @@ Further the script will restart the docker daemon on the host for the routing ch
 ### Execute python ZTP script using Ansible
 
 
+**IMPORTANT:** Before you run the ansible playbooks, make sure you set the ANSIBLE_HOST_KEY_CHECKING 
+environment variable to false to allow Ansible to easily connect without being stalled by key
+checking requirements for the two routers. This can also be set in the ansible_cfg file instead.
+```
+admin@devbox:ansible$ 
+admin@devbox:ansible$ export ANSIBLE_HOST_KEY_CHECKING=False
+```
+{: .notice--danger} .   
+
+
 Hop into the `ansible/` directory of the git repository we cloned earlier. The ansible playbook we intend to use is shown below (`execute_python_ztp.yml`):
 
 
