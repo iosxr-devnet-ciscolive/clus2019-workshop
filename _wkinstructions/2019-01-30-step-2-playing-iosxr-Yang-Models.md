@@ -277,20 +277,25 @@ Execute the Ansible playbook to configure BGP on the two routers:
 
 
 ```
-admin@devbox:ansible$ ansible-playbook -i ansible_hosts configure_bgp_oc_netconf.yml 
+admin@devbox:ansible$ ansible-playbook -i ansible_hosts ansible_netconf.yml 
 
-PLAY [routers_shell] ********************************************************************************************************************
+PLAY [devbox-host] *************************************************************************************************************
 
-TASK [Configure BGP on the router] ******************************************************************************************************
-ok: [r1]
-ok: [r2]
+TASK [Install ncclient] ********************************************************************************************************
+changed: [devbox]
 
-PLAY RECAP ******************************************************************************************************************************
-r1                         : ok=1    changed=0    unreachable=0    failed=0   
-r2                         : ok=1    changed=0    unreachable=0    failed=0   
+PLAY [routers_shell] ***********************************************************************************************************
+
+TASK [Configure BGP on the router] *********************************************************************************************
+changed: [r1]
+changed: [r2]
+
+PLAY RECAP *********************************************************************************************************************
+devbox                     : ok=1    changed=1    unreachable=0    failed=0   
+r1                         : ok=1    changed=1    unreachable=0    failed=0   
+r2                         : ok=1    changed=1    unreachable=0    failed=0   
 
 admin@devbox:ansible$ 
-
 ```
 
 ### Check the BGP configuration on the routers
