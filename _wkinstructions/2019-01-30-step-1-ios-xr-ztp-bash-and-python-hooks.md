@@ -81,7 +81,7 @@ The Topology in use is shown below:
 ## SSH into the devbox 
 
 Drop into the devbox using the credentials above and clone the following git repository:
-<https://github.com/akshshar/iosxr-devnet-cleur2019>
+<https://github.com/akshshar/iosxr-devnet-clus2019>
 
 
 ```
