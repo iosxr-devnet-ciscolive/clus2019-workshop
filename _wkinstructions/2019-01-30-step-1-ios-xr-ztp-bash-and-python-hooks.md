@@ -404,16 +404,7 @@ admin@devbox:ansible$
 
 ### Run the Ansible playbook 
 
-**IMPORTANT:** Before you run the ansible playbook, make sure you set the ANSIBLE_HOST_KEY_CHECKING 
-environment variable to false to allow Ansible to easily connect without being stalled by key
-checking requirements for the two routers. This can also be set in the ansible_cfg file instead.
-```
-admin@devbox:ansible$ 
-admin@devbox:ansible$ export ANSIBLE_HOST_KEY_CHECKING=False
-```  
-{: .notice--danger} . 
-
-Now, execute the ansible playbook, which will automatically transfer the python script to the shell of each router based on the `ansible_hosts` file which stores the credentials and connection information.
+Execute the ansible playbook, which will automatically transfer the python script to the shell of each router based on the `ansible_hosts` file which stores the credentials and connection information.
 
 
 ```
