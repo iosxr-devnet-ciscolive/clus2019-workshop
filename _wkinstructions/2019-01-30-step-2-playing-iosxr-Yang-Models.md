@@ -269,52 +269,6 @@ admin@devbox:ansible$
 
 
 
-### Install ncclient
-
-ncclient is an open source library (<https://pypi.org/project/ncclient/>) that can be used to connect to the netconf subsystem over SSH for multiple different vendor OSes (including IOS-XR).
-It then allows the user to pass in XML encoded YANG data to interact with the router OS and manipulate its provisioned state or extract operational data.
-
-The Ansible netconf_config module requires ncclient to be installed on the system. Let's install ncclient first:
-
-```
-admin@devbox:ansible$ sudo pip2 install ncclient
-The directory '/home/admin/.cache/pip/http' or its parent directory is not owned by the current user and the cache has been disabled. Please check the permissions and owner of that directory. If executing pip with sudo, you may want sudo's -H flag.
-The directory '/home/admin/.cache/pip' or its parent directory is not owned by the current user and caching wheels has been disabled. check the permissions and owner of that directory. If executing pip with sudo, you may want sudo's -H flag.
-Collecting ncclient
-  Downloading https://files.pythonhosted.org/packages/dc/95/acc44c2ff966743fedd1ad991ecf2498f40fd434883c67138b60a6373d49/ncclient-0.6.3.tar.gz (88kB)
-    100% |████████████████████████████████| 92kB 598kB/s 
-Requirement already satisfied: setuptools>0.6 in /usr/lib/python3/dist-packages (from ncclient) (20.7.0)
-Requirement already satisfied: paramiko>=1.15.0 in /usr/local/lib/python3.5/dist-packages (from ncclient) (2.4.2)
-Collecting lxml>=3.3.0 (from ncclient)
-  Downloading https://files.pythonhosted.org/packages/f0/b6/6423a06e3fd191c5c9bea3cd636a175eb7b0b3e3c8d5c58c4e6bf3b43193/lxml-4.3.0-cp35-cp35m-manylinux1_x86_64.whl (5.6MB)
-    100% |████████████████████████████████| 5.6MB 7.5MB/s 
-Collecting selectors2>=2.0.1 (from ncclient)
-  Downloading https://files.pythonhosted.org/packages/c9/89/8a07d6d6c78422c5151f68453e9741af4cd82bebcfa73923f73b3bdbef0d/selectors2-2.0.1-py2.py3-none-any.whl
-Requirement already satisfied: six in /usr/lib/python3/dist-packages (from ncclient) (1.10.0)
-Requirement already satisfied: pynacl>=1.0.1 in /usr/local/lib/python3.5/dist-packages (from paramiko>=1.15.0->ncclient) (1.3.0)
-Requirement already satisfied: cryptography>=1.5 in /usr/local/lib/python3.5/dist-packages (from paramiko>=1.15.0->ncclient) (2.5)
-Requirement already satisfied: pyasn1>=0.1.7 in /usr/local/lib/python3.5/dist-packages (from paramiko>=1.15.0->ncclient) (0.4.5)
-Requirement already satisfied: bcrypt>=3.1.3 in /usr/local/lib/python3.5/dist-packages (from paramiko>=1.15.0->ncclient) (3.1.6)
-Requirement already satisfied: cffi>=1.4.1 in /usr/local/lib/python3.5/dist-packages (from pynacl>=1.0.1->paramiko>=1.15.0->ncclient) (1.11.5)
-Requirement already satisfied: asn1crypto>=0.21.0 in /usr/local/lib/python3.5/dist-packages (from cryptography>=1.5->paramiko>=1.15.0->ncclient) (0.24.0)
-Requirement already satisfied: pycparser in /usr/local/lib/python3.5/dist-packages (from cffi>=1.4.1->pynacl>=1.0.1->paramiko>=1.15.0->ncclient) (2.19)
-Installing collected packages: lxml, selectors2, ncclient
-  Running setup.py install for ncclient ... done
-Successfully installed lxml-4.3.0 ncclient-0.6.3 selectors2-2.0.1
-You are using pip version 10.0.1, however version 19.0.1 is available.
-You should consider upgrading via the 'pip install --upgrade pip' command.
-admin@devbox:ansible$ 
-
-```
-
-In the end, you should have a relatively latest version of ncclient installed (version could differ based on when you run this lab): 
-
-```
-admin@devbox:ansible$ pip2 list | grep ncclient
-ncclient                0.6.3  
-admin@devbox:ansible$
-```
-
 
 ### Execute the Ansible playbook to configure BGP
 
