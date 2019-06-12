@@ -99,7 +99,7 @@ admin@devbox:ansible$
 
 ```
 
-We will be using the playbook: `ansible_netconf.yml` which uses the `netconf_config` module which in turn utilizes the XML encoded data to configure BGP on routers r1 and r2:
+We will be using the playbook: `ansible_netconf.yml` to configure BGP on routers r1 and r2:
 
 The playbook is dumped below: 
 
@@ -272,7 +272,7 @@ admin@devbox:ansible$
 
 ### Execute the Ansible playbook to configure BGP
 
-With ncclient installed, execute the Ansible playbook to configure BGP on the two routers:
+Execute the Ansible playbook to configure BGP on the two routers:
 
 
 
