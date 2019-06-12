@@ -529,13 +529,12 @@ Execute the YDK script, passing to it the credentials and connection details for
 Pass the `-v` option to the script to dump the requests/responses as the script executes.
 
 ```
-admin@devbox:ydk$ 
 admin@devbox:ydk$ ./configure_telemetry_openconfig.py -v ssh://vagrant:vagrant@10.10.20.170:8321
-2019-01-29 21:02:48,375 - ydk - INFO - Path where models are to be downloaded: /home/admin/.ydk/10.10.20.170_8321
-2019-01-29 21:02:48,386 - ydk - INFO - Connected to 10.10.20.170 on port 8321 using ssh with timeout of -1
-2019-01-29 21:02:48,396 - ydk - INFO - Executing CRUD create operation on [openconfig-telemetry:telemetry-system]
-2019-01-29 21:02:52,735 - ydk - INFO - =============Generating payload to send to device=============
-2019-01-29 21:02:52,735 - ydk - INFO - 
+2019-06-12 11:02:09,914 - ydk - INFO - Path where models are to be downloaded: /home/admin/.ydk/10.10.20.170_8321
+2019-06-12 11:02:10,203 - ydk - INFO - Connected to 10.10.20.170 on port 8321 using ssh with timeout of -1
+2019-06-12 11:02:10,213 - ydk - INFO - Executing CRUD create operation on [openconfig-telemetry:telemetry-system]
+2019-06-12 11:02:15,264 - ydk - INFO - =============Generating payload to send to device=============
+2019-06-12 11:02:15,265 - ydk - INFO - 
 <rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
 <edit-config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
   <target>
@@ -596,36 +595,35 @@ admin@devbox:ydk$ ./configure_telemetry_openconfig.py -v ssh://vagrant:vagrant@1
 </config>
 </edit-config>
 </rpc>
-2019-01-29 21:02:52,738 - ydk - INFO - 
+2019-06-12 11:02:15,272 - ydk - INFO - 
 
-2019-01-29 21:02:52,789 - ydk - INFO - =============Reply payload received from device=============
-2019-01-29 21:02:52,789 - ydk - INFO - 
+2019-06-12 11:02:15,329 - ydk - INFO - =============Reply payload received from device=============
+2019-06-12 11:02:15,330 - ydk - INFO - 
 <?xml version="1.0"?>
-<rpc-reply xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+<rpc-reply xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="10">
   <ok/>
 </rpc-reply>
 
-2019-01-29 21:02:52,791 - ydk - INFO - 
+2019-06-12 11:02:15,332 - ydk - INFO - 
 
-2019-01-29 21:02:52,791 - ydk - INFO - =============Executing commit=============
-2019-01-29 21:02:52,791 - ydk - INFO - 
+2019-06-12 11:02:15,332 - ydk - INFO - =============Executing commit=============
+2019-06-12 11:02:15,333 - ydk - INFO - 
 <rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
   <commit/>
 </rpc>
 
-2019-01-29 21:02:53,092 - ydk - INFO - =============Reply payload received from device=============
-2019-01-29 21:02:53,092 - ydk - INFO - 
+2019-06-12 11:02:15,653 - ydk - INFO - =============Reply payload received from device=============
+2019-06-12 11:02:15,654 - ydk - INFO - 
 <?xml version="1.0"?>
-<rpc-reply xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="2">
+<rpc-reply xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="11">
   <ok/>
 </rpc-reply>
 
-2019-01-29 21:02:53,093 - ydk - INFO - 
+2019-06-12 11:02:15,654 - ydk - INFO - 
 
-2019-01-29 21:02:53,094 - ydk - INFO - Operation succeeded
-2019-01-29 21:02:53,094 - ydk - INFO - Disconnected from device
+2019-06-12 11:02:15,654 - ydk - INFO - Operation succeeded
+2019-06-12 11:02:15,655 - ydk - INFO - Disconnected from device
 admin@devbox:ydk$ 
-
 ```
 
 
@@ -673,37 +671,23 @@ RP/0/RP0/CPU0:r1#
 
 
 ```
-RP/0/RP0/CPU0:r1#show telemetry model-driven subscription 1
-Wed Jan 30 05:07:56.424 UTC
-Subscription:  1
--------------
-  State:       NA
-  Sensor groups:
-  Id: BGPSession
-    Sample Interval:      15000 ms
-    Sensor Path:          Cisco-IOS-XR-ipv4-bgp-oper:bgp/instances/instance/instance-active/default-vrf/sessions
-    Sensor Path State:    Resolved
-    Sensor Path:          Cisco-IOS-XR-ipv4-bgp-oper:bgp/instances/instance/instance-active/default-vrf/process-info
-    Sensor Path State:    Resolved
-
-  Collection Groups:
-  ------------------
-  No active collection groups
-
-RP/0/RP0/CPU0:r1#show telemetry model-driven subscription 2
-Wed Jan 30 05:07:59.312 UTC
-Subscription:  2
--------------
-  State:       NA
-  Sensor groups:
-  Id: IPV6Neighbor
-    Sample Interval:      15000 ms
-    Sensor Path:          Cisco-IOS-XR-ipv6-nd-oper:ipv6-node-discovery/nodes/node/neighbor-interfaces/neighbor-interface/host-addresses/host-address
-    Sensor Path State:    Resolved
-
-  Collection Groups:
-  ------------------
-  No active collection groups
+RP/0/RP0/CPU0:r1#show running-config  telemetry model-driven 
+Wed Jun 12 18:03:24.889 UTC
+telemetry model-driven
+ sensor-group BGPSession
+  sensor-path Cisco-IOS-XR-ipv4-bgp-oper:bgp/instances/instance/instance-active/default-vrf/sessions
+  sensor-path Cisco-IOS-XR-ipv4-bgp-oper:bgp/instances/instance/instance-active/default-vrf/process-info
+ !
+ sensor-group IPV6Neighbor
+  sensor-path Cisco-IOS-XR-ipv6-nd-oper:ipv6-node-discovery/nodes/node/neighbor-interfaces/neighbor-interface/host-addresses/host-address
+ !
+ subscription 1
+  sensor-group-id BGPSession sample-interval 15000
+ !
+ subscription 2
+  sensor-group-id IPV6Neighbor sample-interval 15000
+ !
+!
 
 RP/0/RP0/CPU0:r1#
 
