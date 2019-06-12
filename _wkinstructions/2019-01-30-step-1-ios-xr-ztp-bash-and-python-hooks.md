@@ -433,12 +433,11 @@ When we run the playbook, wait for some time before the `ansible-playbook` retur
 
 
 ```
-admin@devbox:ansible$ 
 admin@devbox:ansible$ ansible-playbook -i ansible_hosts execute_python_ztp.yml
 
-PLAY [routers_shell] ******************************************************************************************************************
+PLAY [routers_shell] ***********************************************************************************************************
 
-TASK [debug] **************************************************************************************************************************
+TASK [debug] *******************************************************************************************************************
 ok: [r2] => {
     "msg": "hostname=r2"
 }
@@ -446,11 +445,11 @@ ok: [r1] => {
     "msg": "hostname=r1"
 }
 
-TASK [Copy and Execute the Python Configuration script on the router] *****************************************************************
+TASK [Copy and Execute the Python Configuration script on the router] **********************************************************
 changed: [r2]
 changed: [r1]
 
-TASK [debug] **************************************************************************************************************************
+TASK [debug] *******************************************************************************************************************
 ok: [r1] => {
     "output.stdout_lines": [
         "", 
@@ -459,18 +458,18 @@ ok: [r1] => {
         "", 
         "###### Using Child class method, creating a new user ######", 
         "", 
-        "2019-01-30 13:41:42,652 - DebugZTPLogger - DEBUG - Config File content to be applied  !", 
+        "2019-06-12 17:46:43,331 - DebugZTPLogger - DEBUG - Config File content to be applied  !", 
         "                     username vagrant ", 
         "                     group root-lr", 
         "                     group cisco-support", 
         "                     secret 5 $1$FzMk$Y5G3Cv0H./q0fG.LGyIJS1 ", 
         "                     !", 
         "                     end", 
-        "2019-01-30 13:41:48,489 - DebugZTPLogger - DEBUG - Received exec command request: \"show configuration commit changes last 1\"", 
-        "2019-01-30 13:41:48,489 - DebugZTPLogger - DEBUG - Response to any expected prompt \"\"", 
+        "2019-06-12 17:46:48,353 - DebugZTPLogger - DEBUG - Received exec command request: \"show configuration commit changes last 1\"", 
+        "2019-06-12 17:46:48,353 - DebugZTPLogger - DEBUG - Response to any expected prompt \"\"", 
         "Building configuration...", 
-        "2019-01-30 13:41:50,291 - DebugZTPLogger - DEBUG - Exec command output is ['!! IOS XR Configuration version = 6.4.1', 'username vagrant', 'group root-lr', 'group cisco-support', 'secret 5 $1$FzMk$Y5G3Cv0H./q0fG.LGyIJS1', '!', 'end']", 
-        "2019-01-30 13:41:50,291 - DebugZTPLogger - DEBUG - Config apply through file successful, last change = ['!! IOS XR Configuration version = 6.4.1', 'username vagrant', 'group root-lr', 'group cisco-support', 'secret 5 $1$FzMk$Y5G3Cv0H./q0fG.LGyIJS1', '!', 'end']", 
+        "2019-06-12 17:46:49,783 - DebugZTPLogger - DEBUG - Exec command output is ['!! IOS XR Configuration version = 6.4.1', 'username vagrant', 'group root-lr', 'group cisco-support', 'secret 5 $1$FzMk$Y5G3Cv0H./q0fG.LGyIJS1', '!', 'end']", 
+        "2019-06-12 17:46:49,783 - DebugZTPLogger - DEBUG - Config apply through file successful, last change = ['!! IOS XR Configuration version = 6.4.1', 'username vagrant', 'group root-lr', 'group cisco-support', 'secret 5 $1$FzMk$Y5G3Cv0H./q0fG.LGyIJS1', '!', 'end']", 
         "", 
         "###### New user successfully created, return value: ######", 
         "", 
@@ -543,7 +542,7 @@ ok: [r1] => {
         "    \"end\"", 
         "]", 
         "", 
-        "####### Applying tpa configuration to enable docker pull from docker.io######", 
+        "####### Applying tpa configuration to enable internet access from linux shell via management port ######", 
         "", 
         "Building configuration...", 
         "", 
@@ -573,35 +572,7 @@ ok: [r1] => {
         "    \"!\", ", 
         "    \"!\", ", 
         "    \"end\"", 
-        "]", 
-        "", 
-        "####### Finally restarting the docker daemon to make sure changes take effect######", 
-        "", 
-        "", 
-        "###### Successfully restarted the docker daemon, response: ######", 
-        "", 
-        "['ztp-user connected from 127.0.0.1 using console on r1',", 
-        " '\\x1b[?7hsysadmin-vm:0_RP0# run ssh 10.0.2.16 service docker restart',", 
-        " 'Wed Jan  30 13:42:16.788 UTC',", 
-        " 'docker stop/waiting',", 
-        " 'docker start/running, process 18840',", 
-        " 'sysadmin-vm:0_RP0#']", 
-        "", 
-        "###### return value in json: ######", 
-        "", 
-        "[", 
-        "    \"ztp-user connected from 127.0.0.1 using console on r1\", ", 
-        "    \"\\u001b[?7hsysadmin-vm:0_RP0# run ssh 10.0.2.16 service docker restart\", ", 
-        "    \"Wed Jan  30 13:42:16.788 UTC\", ", 
-        "    \"docker stop/waiting\", ", 
-        "    \"docker start/running, process 18840\", ", 
-        "    \"sysadmin-vm:0_RP0#\"", 
-        "]", 
-        "Sleeping for about 30 seconds, waiting for the docker daemon to be up", 
-        "", 
-        "#######Pulling the docker image for Open/R ######", 
-        "", 
-        "{'status': 1, 'output': 'Using default tag: latest\\n', 'error': 'Error response from daemon: Get https://registry-1.docker.io/v2/akshshar/openr-xr/manifests/latest: Get https://auth.docker.io/token?scope=repository%3Aakshshar%2Fopenr-xr%3Apull&service=registry.docker.io: net/http: request canceled while waiting for connection\\n'}"
+        "]"
     ]
 }
 ok: [r2] => {
@@ -612,18 +583,18 @@ ok: [r2] => {
         "", 
         "###### Using Child class method, creating a new user ######", 
         "", 
-        "2019-01-30 13:41:42,159 - DebugZTPLogger - DEBUG - Config File content to be applied  !", 
+        "2019-06-12 17:46:43,222 - DebugZTPLogger - DEBUG - Config File content to be applied  !", 
         "                     username vagrant ", 
         "                     group root-lr", 
         "                     group cisco-support", 
         "                     secret 5 $1$FzMk$Y5G3Cv0H./q0fG.LGyIJS1 ", 
         "                     !", 
         "                     end", 
-        "2019-01-30 13:41:47,312 - DebugZTPLogger - DEBUG - Received exec command request: \"show configuration commit changes last 1\"", 
-        "2019-01-30 13:41:47,313 - DebugZTPLogger - DEBUG - Response to any expected prompt \"\"", 
+        "2019-06-12 17:46:48,309 - DebugZTPLogger - DEBUG - Received exec command request: \"show configuration commit changes last 1\"", 
+        "2019-06-12 17:46:48,310 - DebugZTPLogger - DEBUG - Response to any expected prompt \"\"", 
         "Building configuration...", 
-        "2019-01-30 13:41:49,057 - DebugZTPLogger - DEBUG - Exec command output is ['!! IOS XR Configuration version = 6.4.1', 'username vagrant', 'group root-lr', 'group cisco-support', 'secret 5 $1$FzMk$Y5G3Cv0H./q0fG.LGyIJS1', '!', 'end']", 
-        "2019-01-30 13:41:49,057 - DebugZTPLogger - DEBUG - Config apply through file successful, last change = ['!! IOS XR Configuration version = 6.4.1', 'username vagrant', 'group root-lr', 'group cisco-support', 'secret 5 $1$FzMk$Y5G3Cv0H./q0fG.LGyIJS1', '!', 'end']", 
+        "2019-06-12 17:46:49,873 - DebugZTPLogger - DEBUG - Exec command output is ['!! IOS XR Configuration version = 6.4.1', 'username vagrant', 'group root-lr', 'group cisco-support', 'secret 5 $1$FzMk$Y5G3Cv0H./q0fG.LGyIJS1', '!', 'end']", 
+        "2019-06-12 17:46:49,873 - DebugZTPLogger - DEBUG - Config apply through file successful, last change = ['!! IOS XR Configuration version = 6.4.1', 'username vagrant', 'group root-lr', 'group cisco-support', 'secret 5 $1$FzMk$Y5G3Cv0H./q0fG.LGyIJS1', '!', 'end']", 
         "", 
         "###### New user successfully created, return value: ######", 
         "", 
@@ -696,7 +667,7 @@ ok: [r2] => {
         "    \"end\"", 
         "]", 
         "", 
-        "####### Applying tpa configuration to enable docker pull from docker.io######", 
+        "####### Applying tpa configuration to enable internet access from linux shell via management port ######", 
         "", 
         "Building configuration...", 
         "", 
@@ -726,44 +697,16 @@ ok: [r2] => {
         "    \"!\", ", 
         "    \"!\", ", 
         "    \"end\"", 
-        "]", 
-        "", 
-        "####### Finally restarting the docker daemon to make sure changes take effect######", 
-        "", 
-        "", 
-        "###### Successfully restarted the docker daemon, response: ######", 
-        "", 
-        "['ztp-user connected from 127.0.0.1 using console on r2',", 
-        " '\\x1b[?7hsysadmin-vm:0_RP0# run ssh 10.0.2.16 service docker restart',", 
-        " 'Wed Jan  30 13:42:14.295 UTC',", 
-        " 'docker stop/waiting',", 
-        " 'docker start/running, process 13980',", 
-        " 'sysadmin-vm:0_RP0#']", 
-        "", 
-        "###### return value in json: ######", 
-        "", 
-        "[", 
-        "    \"ztp-user connected from 127.0.0.1 using console on r2\", ", 
-        "    \"\\u001b[?7hsysadmin-vm:0_RP0# run ssh 10.0.2.16 service docker restart\", ", 
-        "    \"Wed Jan  30 13:42:14.295 UTC\", ", 
-        "    \"docker stop/waiting\", ", 
-        "    \"docker start/running, process 13980\", ", 
-        "    \"sysadmin-vm:0_RP0#\"", 
-        "]", 
-        "Sleeping for about 30 seconds, waiting for the docker daemon to be up", 
-        "", 
-        "#######Pulling the docker image for Open/R ######", 
-        "", 
-        "{'status': 0, 'output': 'Using default tag: latest\\nlatest: Pulling from akshshar/openr-xr\\nDigest: sha256:0d81b575830fe776739f960870652c7d9da601eaf32f68fa5569e852a2c5d4b0\\nStatus: Image is up to date for akshshar/openr-xr:latest\\n', 'error': ''}"
+        "]"
     ]
 }
 
-PLAY RECAP ****************************************************************************************************************************
+PLAY RECAP *********************************************************************************************************************
 r1                         : ok=3    changed=1    unreachable=0    failed=0   
 r2                         : ok=3    changed=1    unreachable=0    failed=0   
 
 admin@devbox:ansible$ 
-admin@devbox:ansible$
+
 ```
 
 
