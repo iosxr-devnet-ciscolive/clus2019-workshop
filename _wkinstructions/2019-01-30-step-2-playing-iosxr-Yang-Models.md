@@ -85,18 +85,18 @@ Hop into the devbox and browse to the ansible directory:
 
 
 ```
-AKSHSHAR-M-33WP:~ akshshar$ ssh -p 2211 admin@10.10.20.170
-admin@10.10.20.170's password: 
-Last login: Tue Jan 29 18:35:38 2019 from 192.168.122.1
-admin@devbox:~$ 
-admin@devbox:~$ 
 admin@devbox:~$ cd iosxr-devnet-clus2019/
 admin@devbox:iosxr-devnet-clus2019$ ls
-ansible  README.md  ztp_hooks
+ansible  README.md  ydk  ztp_hooks
+admin@devbox:iosxr-devnet-clus2019$ 
 admin@devbox:iosxr-devnet-clus2019$ cd ansible/
-admin@devbox:ansible$ ls
-ansible_hosts  configure_bgp_oc_netconf.yml  docker_bringup.yml  execute_python_ztp.yml  openr  set_ipv6_route.sh  xml
 admin@devbox:ansible$ 
+admin@devbox:ansible$ ls
+ansible_hosts          configure_bgp_netconf.yml  openr              setup_dependencies.yml       yang_config
+ansible_netconf.yml    docker_bringup.yml         openr_setup.yml    setup_insecure_registry.yml
+combined_playbook.yml  execute_python_ztp.yml     set_ipv6_route.sh  xml
+admin@devbox:ansible$ 
+
 ```
 
 We will be using the playbook: `configure_bgp_oc_netconf.yml` which uses the netconf_config module which in turn utilizes the XML encoded data to configure BGP on routers r1 and r2:
