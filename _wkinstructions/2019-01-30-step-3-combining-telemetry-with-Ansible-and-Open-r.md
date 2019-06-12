@@ -189,13 +189,13 @@ admin@devbox:openr$
 ### Ansible Playbook to deploy Open/R
 
 
-The Ansible playbook we intend to use can be found in the `ansible` directory  of the `iosxr-devnet-cleur2019` git repository:  
+The Ansible playbook we intend to use can be found in the `ansible` directory  of the `iosxr-devnet-clus2019` git repository:  
 
 
 ```
 admin@devbox:~$ 
-admin@devbox:~$ cd ~/iosxr-devnet-cleur2019/
-admin@devbox:iosxr-devnet-cleur2019$ cd ansible/
+admin@devbox:~$ cd ~/iosxr-devnet-clus2019/
+admin@devbox:iosxr-devnet-clus2019$ cd ansible/
 admin@devbox:ansible$ 
 admin@devbox:ansible$ cat docker_bringup.yml 
 ---
