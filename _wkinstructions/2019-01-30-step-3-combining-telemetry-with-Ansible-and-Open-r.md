@@ -6,9 +6,9 @@ author: Akshat Sharma
 tags:
   - iosxr
   - cisco
-  - CLUS2018
   - devnet
   - programmability
+  - clus2019
 excerpt: >-
   Combining IOS-XR Telemetry and Service layer APIs to solve a remediation use
   case
